@@ -24,17 +24,27 @@ posts_schema = Publicacion_Schema(many = True)
 
 class RecursoListarPublicaciones(Resource):
     def get(self):
-        publicaciones = Publicacion.query.all()
-        return posts_schema.dump(publicaciones)
+        url = 'https://be.trustifi.com/api/i/v1/email'
+
+        payload = "{\"recipients\":[{\"email\":\"cecheverri@mihhgs.com\"}],\"title\":\"Prueba\",\"html\":\"Mensaje de prueba\"}"
+        headers = {
+          'x-trustifi-key': 'fff4f63451456ac608ea62ee5f194310c663f8c3cbc7ba1d',
+          'x-trustifi-secret': '6a7c9320710f9d121cdf979d02ef92f6',
+          'Content-Type': 'application/json'
+        }
+
+        response = requests.request('POST', url, headers = headers, data = payload)
+        
+        return '', 200
     
     def post(self):
-            nueva_publicacion = Publicacion(
-                titulo = request.json['titulo'],
-                contenido=request.json['contenido']
-            )
-            db.session.add(nueva_publicacion)
-            db.session.commit()
-            return post_schema.dump(nueva_publicacion)
+        nueva_publicacion = Publicacion(
+            titulo = request.json['titulo'],
+            contenido=request.json['contenido']
+        )
+        db.session.add(nueva_publicacion)
+        db.session.commit()
+        return post_schema.dump(nueva_publicacion)
      
 class RecursoUnaPublicacion(Resource):
     def get(self, id_publicacion):
