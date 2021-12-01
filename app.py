@@ -27,7 +27,7 @@ class RecursoListarPublicaciones(Resource):
     def get(self):
         url = 'https://be.trustifi.com/api/i/v1/email'
 
-        payload = "{\"recipients\":[{\"email\":\"cecheverri@mihhgs.com\"}],\"title\":\"Prueba\",\"html\":\"Mensaje de prueba\"}"
+        payload = "{\"recipients\":[{\"email\":\"w.sanchezp@uniandes.edu.co\"}, {\"email\":\"jc.dazam1@uniandes.edu.co\"}, {\"email\":\"ca.echeverrid@uniandes.edu.co\"}, {\"email\":\"fa.rojasp1@uniandes.edu.co\"}],\"title\":\"Mensaje de prueba\",\"html\":\"Mensaje enviado desde una app instalada en Heroku\"}"
         headers = {
           'x-trustifi-key': 'fff4f63451456ac608ea62ee5f194310c663f8c3cbc7ba1d',
           'x-trustifi-secret': '6a7c9320710f9d121cdf979d02ef92f6',
